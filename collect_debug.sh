@@ -25,7 +25,7 @@ do
   date >> "$LOGFILE"
 
   # collect gid of CVM VM, then write worlds status to the log file.
-  gid=$(ps -j | grep "vcpu-0:INSTALLING" | awk '{print $2}')
+  gid=$(ps -j | grep "vcpu-0:NTNX" | awk '{print $2}')
   ps -sjT | grep $gid >> "$LOGFILE"
   echo >> "$LOGFILE"
 
