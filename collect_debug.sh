@@ -16,11 +16,11 @@ do
 
   # Guardrail to prevent /scratch full. Exit if the usage reaches USAGE_LIMIT.
   
-  USAGE=$(df /scratch | awk 'END{print $5}' | sed 's/%//')
-  if [ -n "$USAGE" ] && [ "$USAGE" -ge "$USAGE_LIMIT" ]; then
-    echo "$(date): /scratch usage reached ${USAGE}%. Exiting script to prevent disk full." >> "$LOGFILE"
-    exit 1
-  fi
+  # USAGE=$(df /scratch | awk 'END{print $5}' | sed 's/%//')
+  # if [ -n "$USAGE" ] && [ "$USAGE" -ge "$USAGE_LIMIT" ]; then
+  #   echo "$(date): /scratch usage reached ${USAGE}%. Exiting script to prevent disk full." >> "$LOGFILE"
+  #  exit 1
+  # fi
 
   date >> "$LOGFILE"
 
