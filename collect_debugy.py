@@ -37,24 +37,6 @@ def run_cmd(cmd):
     return ""
 
 
-def check_disk_usage():
-  """Check /scratch disk usage (%) and exit if limit is reached."""
-  output = run_cmd("df /scratch")
-  lines = [line for line in output.strip().split("\n") if line]
-  if len(lines) >= 2:
-    fields = lines[-1].split()
-    if len(fields) >= 5:
-      usage_str = fields[4].replace("%", "")
-      if usage_str.isdigit():
-        usage = int(usage_str)
-        if usage >= USAGE_LIMIT:
-          now_str = datetime.datetime.now().strftime("%a %b %d %H:%M:%S %Z %Y")
-          log_msg = f"{now_str}: /scratch usage reached {usage}%. Exiting script to prevent disk full.\n"
-          with open(LOGFILE, "a") as f:
-            f.write(log_msg)
-          sys.exit(1)
-
-
 def rotate_logs():
   """Rotate log files if current LOGFILE exceeds MAX_SIZE."""
   if not os.path.isfile(LOGFILE):
@@ -174,8 +156,6 @@ def main():
     initialize_wids(gid)
 
   while True:
-    # Guardrail for disk usage
-    check_disk_usage()
 
     # Write current date to log file
     now_str = (
