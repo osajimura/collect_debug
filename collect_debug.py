@@ -13,7 +13,7 @@ LOGFILE = "/scratch/pss.out"
 MAX_SIZE = 335544320  # 320 MB
 MAX_FILES = 3
 USAGE_LIMIT = 80
-WATCHDOG_TIMEOUT = 15  # Timeout threshold in seconds
+WATCHDOG_TIMEOUT = 10  # Timeout threshold in seconds
 
 # Shared thread-safe storage for cached WIDs
 cached_wids = []
